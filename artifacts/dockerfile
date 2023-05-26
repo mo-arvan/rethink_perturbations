@@ -1,0 +1,28 @@
+FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-runtime
+
+
+RUN apt update && apt install wget
+
+COPY . /scratch
+
+
+RUN mkdir /dataset
+WORKDIR /dataset
+
+RUN . /scratch/artifacts/prepare-iwslt14.sh
+
+
+WORKDIR /scratch
+
+
+RUN pip install --upgrade pip && \
+    pip install --upgrade numpy && \
+    pip install --editable ./
+
+
+
+ENV IWSLT_DATA=/dataset/iwslt14.tokenized.de-en
+ENV IWSLT_DATA_BIN=/dataset_bin
+
+RUN python preprocess.py --source-lang de --target-lang en     --trainpref $IWSLT_DATA/train --validpref $IWSLT_DATA/valid --testpref $IWSLT_DATA/test     --joined-dictionary --workers 20     --destdir $IWSLT_DATA_BIN
+
