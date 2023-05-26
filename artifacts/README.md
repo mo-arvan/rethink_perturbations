@@ -3,7 +3,7 @@
 
 ```bash
 
-docker build -t rethink-rep:latest -f artifacts/Dockerfile .
+docker build -t rethink-rep:latest -f artifacts/dockerfile .
 
 ```
 

@@ -26,3 +26,4 @@ ENV IWSLT_DATA_BIN=/dataset_bin
 
 RUN python preprocess.py --source-lang de --target-lang en     --trainpref $IWSLT_DATA/train --validpref $IWSLT_DATA/valid --testpref $IWSLT_DATA/test     --joined-dictionary --workers 20     --destdir $IWSLT_DATA_BIN
 
+WORKDIR /workspace
