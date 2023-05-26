@@ -2,6 +2,7 @@
 
 
 ```bash
+cd rethink_perturbations
 
 docker build -t rethink-rep:latest -f artifacts/dockerfile .
 
