@@ -1,6 +1,8 @@
 
+# Reproduction Steps
 
 
+## Setup
 ```bash
 cd rethink_perturbations
 
@@ -18,4 +20,13 @@ docker run -it --rm \
     rethink-rep:latest \
     bash
 
+```
+
+
+
+## Training and Evaluation
+
+```bash
+# inside the container
+. ./artifacts/train_and_eval.sh
 ```
