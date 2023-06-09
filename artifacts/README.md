@@ -13,12 +13,8 @@ docker build -t rethink-rep:latest -f artifacts/dockerfile .
 
 ```bash
 
-docker run -it --rm \
-    --gpus all \
-    --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 \
-    -v $PWD:/workspace \
-    rethink-rep:latest \
-    bash
+docker run -it --rm --gpus all  --shm-size=1g --ulimit stack=67108864 -v $PWD:/workspace rethink-rep:latest bash
+#    --ulimit memlock=-1 \ COMMENTED DUE TO ERROR (NON-ROOT DOCKER RUN) 
 
 ```
 
