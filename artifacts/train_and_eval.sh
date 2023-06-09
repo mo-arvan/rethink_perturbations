@@ -4,7 +4,7 @@
 #export SEED=1315 # MAKE SURE to update
 
 
-python -u train.py     /dataset_bin     --arch transformer_iwslt_de_en --optimizer adam --adam-betas '(0.9, 0.98)'     --clip-norm 0.0 --lr 5e-4 --lr-scheduler inverse_sqrt --warmup-updates 4000     --dropout 0.3 --weight-decay 0.0001 --criterion label_smoothed_cross_entropy     --label-smoothing 0.1 --max-tokens 4096 --log-interval 100  --max-update 100000     --sampling-method worddrop_with_sim_enc_drop --enc-replace-rate 0.1 --dec-replace-rate 0.1 --decay-val 1000     --share-all-embeddings --keep-last-epochs 20 --seed $SEED --save-dir $MODEL_DIR
+CUDA_VISIBLE_DEVICES=0 python -u train.py     /dataset_bin     --arch transformer_iwslt_de_en --optimizer adam --adam-betas '(0.9, 0.98)'     --clip-norm 0.0 --lr 5e-4 --lr-scheduler inverse_sqrt --warmup-updates 4000     --dropout 0.3 --weight-decay 0.0001 --criterion label_smoothed_cross_entropy     --label-smoothing 0.1 --max-tokens 4096 --log-interval 100  --max-update 100000     --sampling-method worddrop_with_sim_enc_drop --enc-replace-rate 0.1 --dec-replace-rate 0.1 --decay-val 1000     --share-all-embeddings --keep-last-epochs 20 --seed $SEED --save-dir $MODEL_DIR
 
 python scripts/average_checkpoints.py --inputs $MODEL_DIR --num-epoch-checkpoints 10 --output $MODEL_DIR/averaged.pt
 
